@@ -1,0 +1,131 @@
+Software Requirements Specification (SRS)
+
+Project Name: BlogSphere
+
+1. Introduction
+
+
+1.1 Purpose
+The purpose of BlogSphere is to create a user-friendly platform where people can share and express their ideas through blog posts. The platform allows authenticated users to create, edit, delete, and interact with blogs. Unauthenticated users can view blogs, likes, and comments. The platform also supports user profiles, follower/following features, and a personalized feed.
+
+1.2 Scope
+BlogSphere will be accessible to authenticated and unauthenticated users, with different levels of access. The primary focus is on providing users with a seamless blogging experience with features like commenting, liking, and following other users. The platform is designed with modern technologies such as React, Node.js, Express.js, and MongoDB (Mongoose), with support for rich media content.
+
+2. System Overview
+
+
+2.1 Product Features
+
+Create, Edit, and Delete Blogs: Authenticated users can manage their blog posts.
+View Blog Details: Users can view detailed blog posts with full content and interactions.
+Comments and Likes: Users can interact with blog posts by commenting and liking.
+Profile Management: Users can manage their profile, including followers and following.
+Sign-up/Sign-in: New users can register and log in using an email or social login.
+Save for Later: Users can save posts to view later.
+Reading History: Users’ reading activity is tracked and displayed.
+Search & Filter: Users can search for blogs based on specific criteria (optional).
+Notifications: Users receive updates on activities related to their posts (optional).
+Dark Mode: Option to toggle between light and dark themes (optional).
+
+3. Functional Requirements
+
+3.1 User Authentication
+
+Users must be able to sign up, sign in, and sign out securely.
+Social login (optional) via Google, Facebook, or other providers.
+Password recovery and email verification for new accounts.
+
+3.2 Blog Management
+
+Create Blog: Authenticated users can create blog posts using a rich-text editor with media support (images, videos, etc.).
+Edit Blog: Authenticated users can edit previously published blogs.
+Delete Blog: Authenticated users can delete their blog posts.
+Details Blog: Blog details page should display the full content, comments, likes, and save options.
+
+3.3 User Profiles
+View Profile: Users have access to their profiles and can view their bio, posts, followers, and following.
+Edit Profile: Users can update their profile picture, bio, and other personal information.
+Followers/Following: Users can follow others and view followers and following lists.
+
+3.4 Interactions
+Comments: Authenticated users can comment on blog posts and reply to existing comments.
+Likes: Users can like blog posts and comments. Like count should be displayed for each blog and comment.
+Save for Later: Users can save blog posts for later viewing and access them through their profile.
+Reading History: The system tracks the user's reading history and displays it on the profile.
+
+4. Non-Functional Requirements
+
+
+4.1 Performance
+The system must be responsive and load efficiently for both mobile and desktop users.
+The blog post page should load in under 2 seconds, with the ability to handle a high number of concurrent users.
+
+4.2 Usability
+The platform should have an intuitive user interface that provides easy navigation between posts, profiles, and blogs.
+Both light and dark modes should be available for improved user comfort.
+
+4.3 Security
+User data, including passwords, should be securely encrypted using strong hashing algorithms.
+The platform should prevent unauthorized access to create, edit, or delete features.
+
+4.4 Scalability
+The system should be able to scale and accommodate an increasing number of users and posts.
+
+
+5. Database Design
+
+5.1 Entities
+
+User: Stores user credentials, profile information, and follow relationships.
+Blog Post: Contains the blog content, author, timestamp, comments, and media.
+Comment: Links to the blog and stores text, author, timestamp, and replies.
+Like: Tracks likes by users for blog posts and comments.
+Follower/Following: Stores relationships between users for social features.
+
+5.2 Data Relationships
+
+One user can create multiple blogs.
+One blog can have multiple comments and likes.
+Users can follow multiple users and be followed by multiple users.
+
+
+6. API Specifications
+
+6.1 Authentication API
+
+POST /signup: Register a new user.
+POST /login: Authenticate user login credentials.
+POST /logout: Logout user from the session.
+POST /password-recovery: Initiate password reset process.
+
+6.2 Blog API
+
+POST /blogs: Create a new blog post.
+PUT /blogs/{id}: Edit an existing blog post.
+DELETE /blogs/{id}: Delete a blog post.
+GET /blogs/{id}: Retrieve blog post details.
+
+6.3 Comments API
+
+POST /blogs/{id}/comments: Add a comment to a blog post.
+GET /blogs/{id}/comments: Retrieve all comments on a blog post.
+
+6.4 Like API
+POST /blogs/{id}/like: Like a blog post.
+DELETE /blogs/{id}/like: Remove like from a blog post.
+
+
+7. User Interface Design
+
+7.1 Frontend Pages
+Homepage: Displays recent blogs and popular tags.
+Sign-up/Sign-in: Form for user authentication.
+Profile Page: Displays user details, posts, followers, following.
+Create/Edit Blog: Rich-text editor with media upload.
+Blog Details: Full view of the blog, with comments and interactions.
+Save for Later: List of saved blogs for future reading.
+Reading History: View list of previously read blogs.
+
+8. Conclusion
+
+BlogSphere aims to provide a feature-rich blogging platform where users can engage in meaningful discussions and share their ideas. With secure authentication, responsive design, and robust interaction features, BlogSphere will create a comprehensive and enjoyable blogging experience for all types of users.
