@@ -1,0 +1,115 @@
+Below is the Entity-Relationship Design (ERD) for the BlogSphere project, representing the relationships between various entities like User, Blog Post, Comment, Like, Follower, and Save for Later.
+
+Entities and Relationships Design
+1. User
+Attributes:
+
+user_id (Primary Key)
+username (Unique)
+email (Unique)
+password
+profile_picture (Optional)
+bio (Optional)
+created_at
+updated_at
+followers (Array of User references)
+following (Array of User references)
+Relationships:
+
+Has Many BlogPost
+Has Many Comment
+Has Many Like
+Has Many SaveForLater
+Many-to-Many relationship with User (Follower/Following)
+Many-to-Many relationship with BlogPost (through Like and SaveForLater)
+2. Blog Post
+Attributes:
+
+blog_id (Primary Key)
+title
+content
+media_url (Optional for images/videos)
+author_id (Foreign Key from User)
+created_at
+updated_at
+views_count
+likes_count
+comments_count
+Relationships:
+
+Belongs To User
+Has Many Comment
+Has Many Like
+Has Many SaveForLater
+3. Comment
+Attributes:
+
+comment_id (Primary Key)
+text
+blog_id (Foreign Key from BlogPost)
+user_id (Foreign Key from User)
+parent_comment_id (Nullable Foreign Key for replies to other comments)
+created_at
+likes_count
+Relationships:
+
+Belongs To User
+Belongs To BlogPost
+Has Many Like
+Self-Join for replies (through parent_comment_id)
+4. Like
+Attributes:
+
+like_id (Primary Key)
+user_id (Foreign Key from User)
+blog_id (Nullable Foreign Key from BlogPost)
+comment_id (Nullable Foreign Key from Comment)
+created_at
+Relationships:
+
+Belongs To User
+Belongs To either BlogPost or Comment (but not both)
+5. Follower
+Attributes:
+
+follower_id (Primary Key)
+follower_user_id (Foreign Key from User)
+following_user_id (Foreign Key from User)
+created_at
+Relationships:
+
+Belongs To User as follower_user_id
+Belongs To User as following_user_id
+This is a Self-Join between User to establish follower/following relationships.
+6. SaveForLater
+Attributes:
+
+save_id (Primary Key)
+user_id (Foreign Key from User)
+blog_id (Foreign Key from BlogPost)
+created_at
+Relationships:
+
+Belongs To User
+Belongs To BlogPost
+Relationships Overview
+User - BlogPost: One-to-Many
+A user can create multiple blog posts, but each blog post belongs to one user.
+
+User - Comment: One-to-Many
+A user can comment on multiple blog posts, and a comment belongs to a single user.
+
+BlogPost - Comment: One-to-Many
+Each blog post can have multiple comments.
+
+User - Like: One-to-Many
+A user can like multiple blog posts and comments, but each like is linked to one user.
+
+BlogPost/Comment - Like: One-to-Many
+A blog post or comment can have multiple likes, but a like belongs to either a blog post or a comment (not both).
+
+User - Follower/Following: Many-to-Many
+A user can follow many other users, and a user can be followed by many other users (via the Follower entity).
+
+User - SaveForLater - BlogPost: Many-to-Many
+A user can save multiple blog posts for later, and a blog post can be saved by multiple users.
