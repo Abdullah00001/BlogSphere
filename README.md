@@ -1,5 +1,3 @@
-
-
 # Blog Sphere
 
 **Version**: 1.0
